@@ -1,0 +1,12 @@
+{
+  "name": "monkey-longnotify",
+  "version": "1.0.0",
+  "description": "how to using notify just as easy as possible? this",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "git": "https://github.com/iamlongalong/monkey-longnotify",
+  "author": "longalong",
+  "license": "MIT"
+}
