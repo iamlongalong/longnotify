@@ -18,36 +18,36 @@
   );
   // CSS for the bubble notification
   var css = `
-    .bubble-container {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      visibility: hidden;
-    }
-    .bubble-message {
-      color: #ffffff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px);
-      cursor: default;
-    }
-    .info {
-      background-color: #2196F3; /* Blue */
-    }
-    .warn {
-      background-color: #ff9800; /* Orange */
-    }
-    .alert {
-      background-color: #f44336; /* Red */
-    }
-  `;
+      .longnotify-bubble-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        visibility: hidden;
+      }
+      .longnotify-bubble-message {
+        color: #ffffff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        cursor: default;
+      }
+      .longnotify-info {
+        background-color: #2196F3; /* Blue */
+      }
+      .longnotify-warn {
+        background-color: #ff9800; /* Orange */
+      }
+      .longnotify-alert {
+        background-color: #f44336; /* Red */
+      }
+    `;
 
   // Insert CSS into the head of the document
   var style = document.createElement("style");
@@ -57,8 +57,8 @@
 
   // Create the bubble notification container and add to the body of the document
   var bubbleContainer = document.createElement("div");
-  bubbleContainer.id = "bubble-notification";
-  bubbleContainer.className = "bubble-container";
+  bubbleContainer.id = "longnotify-bubble-notification";
+  bubbleContainer.className = "longnotify-bubble-container";
   document.body.appendChild(bubbleContainer);
 
   // The function to show the bubble notification
@@ -68,7 +68,7 @@
 
     // Create the bubble message
     var bubble = document.createElement("div");
-    bubble.className = "bubble-message " + level;
+    bubble.className = "longnotify-bubble-message " + "longnotify-" + level;
     bubble.textContent = message;
 
     // Add the bubble to the container and show it
