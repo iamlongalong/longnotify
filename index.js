@@ -1,23 +1,14 @@
-// ==UserScript==
-// @name         longnotify
-// @namespace    http://tampermonkey.net/
-// @version      2024-02-19
-// @description  longnotify is a notify popup, using like longnotify(level, message), level in (info, warn, alert)
-// @author       longalong
-// @match        *://*/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
-// @grant        none
-// ==/UserScript==
+// if (typeof window !== "undefined" && typeof document !== "undefined") {
+//   console.log(
+//     "(*´▽｀)ノノ welcome using longnotify ~ examples are as fellows:"
+//   );
+//   console.log(
+//     'longnotify("info", "hello world info");longnotify("warn", "hello world warn");longnotify("alert", "hello world alert");'
+//   );
+// }
 
-(function () {
-  console.log(
-    "(*´▽｀)ノノ welcome using longnotify ~ examples are as fellows:"
-  );
-  console.log(
-    'longnotify("info", "hello world info");longnotify("warn", "hello world warn");longnotify("alert", "hello world alert");'
-  );
-  // CSS for the bubble notification
-  var css = `
+// CSS for the bubble notification
+const css = `
       .longnotify-bubble-container {
         position: fixed;
         top: 20px;
@@ -44,52 +35,70 @@
       .longnotify-warn {
         background-color: #ff9800; /* Orange */
       }
+      .longnotify-success {
+        background-color: #4caf50;
+        color: white;
+      }
+      .longnotify-warning {
+        background-color: #ff9800;
+        color: white;
+      }
       .longnotify-alert {
+        background-color: #f44336; /* Red */
+      }
+      .longnotify-error {
         background-color: #f44336; /* Red */
       }
     `;
 
-  // Insert CSS into the head of the document
-  var style = document.createElement("style");
-  style.type = "text/css";
-  style.appendChild(document.createTextNode(css));
-  document.head.appendChild(style);
+// Insert CSS into the head of the document
+let styleEle = document.createElement("style");
 
-  // Create the bubble notification container and add to the body of the document
-  var bubbleContainer = document.createElement("div");
-  bubbleContainer.id = "longnotify-bubble-notification";
-  bubbleContainer.className = "longnotify-bubble-container";
-  document.body.appendChild(bubbleContainer);
+styleEle.type = "text/css";
+styleEle.appendChild(document.createTextNode(css));
+document.head.appendChild(styleEle);
 
-  // The function to show the bubble notification
-  window.longnotify = function (level, message) {
-    // Set default level if not specified
-    level = level || "info";
+// Create the bubble notification container and add to the body of the document
+var bubbleContainer = document.createElement("div");
+bubbleContainer.id = "longnotify-bubble-notification";
+bubbleContainer.className = "longnotify-bubble-container";
+document.body.appendChild(bubbleContainer);
 
-    // Create the bubble message
-    var bubble = document.createElement("div");
-    bubble.className = "longnotify-bubble-message " + "longnotify-" + level;
-    bubble.textContent = message;
+// The function to show the bubble notification
+export function longnotify(level, message) {
+  if (!message) {
+    return
+  }
+  // Set default level if not specified
+  level = level || "info";
 
-    // Add the bubble to the container and show it
-    bubbleContainer.appendChild(bubble);
-    bubbleContainer.style.visibility = "visible";
-    bubble.style.visibility = "visible";
-    bubble.style.opacity = 1;
-    bubble.style.transform = "translateY(0)";
+  // Create the bubble message
+  var bubble = document.createElement("div");
+  bubble.className = "longnotify-bubble-message " + "longnotify-" + level;
+  bubble.textContent = message;
 
-    // After 3 seconds, fade out and remove the bubble
+  // Add the bubble to the container and show it
+  bubbleContainer.appendChild(bubble);
+  bubbleContainer.style.visibility = "visible";
+  bubble.style.visibility = "visible";
+  bubble.style.opacity = 1;
+  bubble.style.transform = "translateY(0)";
+
+  // After 3 seconds, fade out and remove the bubble
+  setTimeout(function () {
+    bubble.style.opacity = 0;
+    bubble.style.visibility = "hidden";
+    bubble.style.transform = "translateY(-20px)";
+    // After the transition is done, remove the bubble from the document
     setTimeout(function () {
-      bubble.style.opacity = 0;
-      bubble.style.visibility = "hidden";
-      bubble.style.transform = "translateY(-20px)";
-      // After the transition is done, remove the bubble from the document
-      setTimeout(function () {
-        bubbleContainer.removeChild(bubble);
-        if (bubbleContainer.childElementCount === 0) {
-          bubbleContainer.style.visibility = "hidden";
-        }
-      }, 300);
-    }, 3000);
-  };
-})();
+      bubbleContainer.removeChild(bubble);
+      if (bubbleContainer.childElementCount === 0) {
+        bubbleContainer.style.visibility = "hidden";
+      }
+    }, 300);
+  }, 3000);
+}
+
+export default {
+  longnotify,
+};

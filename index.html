@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Long Notify</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+      }
+      .notification-input {
+        padding: 0 10px;
+        margin-bottom: 10px;
+        width: 300px;
+        height: 40px;
+        line-height: 2rem;
+        font-size: 1.2rem;
+        border-radius: 4px;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .info {
+        background-color: #2196f3;
+        color: white;
+      }
+      .success {
+        background-color: #4caf50;
+        color: white;
+      }
+      .warning {
+        background-color: #ff9800;
+        color: white;
+      }
+      .error {
+        background-color: #f44336;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="messageInput"
+      class="notification-input"
+      placeholder="Enter your message here"
+    />
+    <button
+      class="info"
+      onclick="longnotify('info', document.getElementById('messageInput').value)"
+    >
+      Info
+    </button>
+    <button
+      class="success"
+      onclick="longnotify('success', document.getElementById('messageInput').value)"
+    >
+      Success
+    </button>
+    <button
+      class="warning"
+      onclick="longnotify('warning', document.getElementById('messageInput').value)"
+    >
+      Warning
+    </button>
+    <button
+      class="error"
+      onclick="longnotify('error', document.getElementById('messageInput').value)"
+    >
+      Error
+    </button>
+
+    <!-- Include longnotify script -->
+    <script src="dist/index.js"></script>
+  </body>
+</html>

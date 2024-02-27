@@ -1,12 +1,30 @@
 {
-  "name": "monkey-longnotify",
+  "name": "longnotify",
   "version": "1.0.0",
-  "description": "how to using notify just as easy as possible? this",
-  "main": "index.js",
-  "scripts": {
-    "test": ""
-  },
-  "git": "https://github.com/iamlongalong/monkey-longnotify",
   "author": "longalong",
-  "license": "MIT"
+  "description": "easy notify tool for broswer",
+  "keywords": [
+    "notify",
+    "broswer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamlongalong/longnotify"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/iamlongalong/longnotify",
+  "bugs": "https://github.com/iamlongalong/longnotify/issues",
+  "main": "dist/index.js",
+  "module": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "babel-loader": "^9.1.3",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
 }
