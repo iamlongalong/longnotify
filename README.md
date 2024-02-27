@@ -1,4 +1,4 @@
-# monkey-longnotify
+# longnotify
 
 W(￣_￣)W  
 
@@ -6,7 +6,7 @@ W(￣_￣)W
 
 
 if you are in broswer, just using:  
-> longnotify(level : "info" | "warn" | "alert" , message: str)
+> longnotify(level : "info" | "success" | "warn" | "warning" | "alert" | "error" , message: str)
 
 for example:
 ```js
